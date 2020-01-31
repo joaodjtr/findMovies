@@ -1,5 +1,7 @@
 import React from 'react';
-import './styles/css/App.css'
+import './styles/App.scss'
+
+import Cards from './components/Cards'
 
 import logo from './assets/logo.png'
 import searchIcon from './assets/search.svg'
@@ -7,7 +9,9 @@ import searchIcon from './assets/search.svg'
 function App() {
   return(
     <>
-      <header className="header">
+      <header className="header"></header>
+
+      <header className="header header--fixed">
         <figure className="header__logo">
           <img src={logo} alt="Logo"/>
         </figure>
@@ -19,14 +23,23 @@ function App() {
         </div>
       </header>
 
-      <article className="article">
-        <aside className="article__aside">
+      <section className="section">
+        <aside className="section__aside">
+          <div className="aside__content">
 
+          </div>
         </aside>
-        <main className="article__main">
+        <main className="section__main">
 
+          <Cards/>
+          <Cards/>
+          <Cards/>
+          <Cards/>
+          <Cards/>
+          <Cards/>
+          
         </main>
-      </article>
+      </section>
     </>
   )
 }

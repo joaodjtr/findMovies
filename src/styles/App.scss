@@ -19,6 +19,7 @@ $lightWhite: #f3e9ee;
   outline: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #6d6d6d;
 }
 
 html,
@@ -38,22 +39,26 @@ h3,
 h4,
 h5,
 h6 {
+  color: #222;
   font-family: Montserrat;
 }
 
-$wHeaderAndAside: 350px;
+$widthAside: 300px;
 
 .header {
-  height: auto;
+  height: 60px;
+  width: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
   padding: 0;
   background-color: $primaryColor;
+  opacity: 0;
 
   &__logo {
-    width: $wHeaderAndAside;
+    height: 100%;
+    width: $widthAside;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +71,7 @@ $wHeaderAndAside: 350px;
   }
 
   &__search_bar {
-    width: 100%;
+    width: calc(100% - #{$widthAside});
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -97,22 +102,44 @@ $wHeaderAndAside: 350px;
   }
 }
 
-.article{
-    height: calc(100vh - 60px);
-    display: flex;
-    flex-flow: row nowrap;
+.header--fixed{
+  position: fixed;
+  top: 0;
+  opacity: 1;
+  z-index: 999;
+}
 
-    &__aside{
-        height: 100%;
-        width: $wHeaderAndAside;
-        padding: 15px 10px;
-        background-color: $tertiaryColor;
-    }
+.section {
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 
-    &__main{
-        height: 100%;
-        width: 100%;
-        padding: 15px 30px;
-        background-color: $lightWhite;
+  &__aside {
+    min-height: calc(100vh - 60px);
+    width: $widthAside;
+    padding: 30px 10px;
+    background-color: $tertiaryColor;
+    
+    .aside__content{
+      height: 100%;
+      width: $widthAside;
+      padding: 15px 10px;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      background-color: yellow;
     }
+  }
+
+  &__main {
+    min-height: calc(100vh - 60px);
+    width: calc(100% - #{$widthAside});
+    padding: 30px 30px;
+    background-color: $lightWhite;
+
+    
+  }
 }
