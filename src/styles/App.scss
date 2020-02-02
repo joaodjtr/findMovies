@@ -10,6 +10,7 @@ $tertiaryColor: #272727;
 $lightWhite: #f3e9ee;
 // $tertiaryColor: #240041;
 // $tertiaryColor: #111d5e;
+$widthAside: 300px;
 
 * {
   margin: 0;
@@ -43,8 +44,6 @@ h6 {
   font-family: Montserrat;
 }
 
-$widthAside: 300px;
-
 .header {
   height: 60px;
   width: 100%;
@@ -53,7 +52,6 @@ $widthAside: 300px;
   justify-content: flex-start;
   align-items: center;
   padding: 0;
-  background-color: $primaryColor;
   opacity: 0;
 
   &__logo {
@@ -65,17 +63,19 @@ $widthAside: 300px;
     padding: 15px 10px;
     background-color: $tertiaryColor;
     img {
-      height: 30px;
+      height: 35px;
       width: auto;
     }
   }
 
   &__search_bar {
+    height: 100%;
     width: calc(100% - #{$widthAside});
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 15px 30px;
+    background-color: $primaryColor;
 
     .search_bar__field {
       width: 100%;
@@ -102,7 +102,7 @@ $widthAside: 300px;
   }
 }
 
-.header--fixed{
+.header--fixed {
   position: fixed;
   top: 0;
   opacity: 1;
@@ -123,15 +123,6 @@ $widthAside: 300px;
     padding: 30px 10px;
     background-color: $tertiaryColor;
     
-    .aside__content{
-      height: 100%;
-      width: $widthAside;
-      padding: 15px 10px;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      background-color: yellow;
-    }
   }
 
   &__main {
@@ -139,7 +130,13 @@ $widthAside: 300px;
     width: calc(100% - #{$widthAside});
     padding: 30px 30px;
     background-color: $lightWhite;
-
-    
   }
+}
+
+.full_page{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }

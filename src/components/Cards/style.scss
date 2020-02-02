@@ -14,8 +14,9 @@
       .card {
         padding: 20px;
         background-color: white;
-        border-radius: 5px;
-        box-shadow: 0 0 15px 0px rgba(160, 160, 160, 0.5);
+        border: 1.25px solid rgb(229, 229, 229);
+        border-radius: 7px;
+        box-shadow: 0 10px 10px 0px rgba(207, 207, 207, 0.5);
 
         .card__movie {
           display: flex;
@@ -60,13 +61,13 @@
             }
 
             .movie__genre {
-              font-size: 1em;
-              font-weight: 400;
+              font-size: .9em;
+              color: #848484;
             }
 
             .movie__overview {
               margin: 10px 0 0 0;
-              font-size: 0.9em;
+              font-size: .95em;
               font-weight: 400;
             }
           }
@@ -84,6 +85,7 @@
             display: flex;
             flex-flow: row nowrap;
             overflow-x: scroll;
+            overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             -ms-overflow-style: -ms-autohiding-scrollbar;
             list-style: none;
@@ -151,6 +153,7 @@
       @media (max-width: 750px) {
         & {
           .card {
+            flex-basis: inherit;
             .card__movie {
               flex-flow: column nowrap;
 
