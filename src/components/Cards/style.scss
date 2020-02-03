@@ -28,27 +28,19 @@
             align-items: center;
             margin-top: -60px;
             img {
-              border-radius: 3.5px;
+              border-radius: 6px;
               height: 100%;
               box-shadow: 0 0 10px 0px rgba(160, 160, 160, 0.5);
             }
             .movie__rate {
-              margin-top: calc(-1em - 2.5px);
+              min-width: 50px;
+              margin-top: -1em;
               font-size: 1em;
               font-weight: bold;
               text-align: center;
               color: white;
-              padding: 5px 8px;
+              padding: 5px 0;
               border-radius: 10px;
-            }
-            .rate--high {
-              background-color: #21bf73;
-            }
-            .rate--medium {
-              background-color: #ffcc00;
-            }
-            .rate--low {
-              background-color: #ff4057;
             }
           }
 
@@ -75,7 +67,7 @@
 
         .card__movie_footer {
           height: 65px;
-          margin-top: 15px;
+          margin-top: 30px;
           padding: 10px 0 0 0;
           border-top: 1px solid #e0e0e0;
           position: relative;
@@ -88,7 +80,6 @@
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             -ms-overflow-style: -ms-autohiding-scrollbar;
-            list-style: none;
             padding-left: 30px;
             position: absolute;
 
@@ -174,4 +165,14 @@
   .main__article + .main__article {
     margin-top: 60px;
   }
+}
+
+.rate--high {
+  background-color: #21bf73;
+}
+.rate--medium {
+  background-color: #ffcc00;
+}
+.rate--low {
+  background-color: #ff4057;
 }

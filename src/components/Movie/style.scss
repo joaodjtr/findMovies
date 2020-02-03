@@ -1,9 +1,120 @@
 $lightWhite: #f3e9ee;
 
-.header{
-    top: -100%;
+.header {
+  top: -100%;
 }
 
-.full_page{
-    background-color: $lightWhite;
+.full_page.movie {
+  background-color: $lightWhite;
+  padding: 60px;
+
+  .movie__content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    .content__poster {
+      flex-basis: 400px;
+      height: 100%;
+      width: 400px;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      position: relative;
+
+      img {
+        height: 100%;
+        width: auto;
+        border-radius: 12px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .poster__rate {
+        min-width: 50px;
+        margin-top: calc(-1.2em + 5px);
+        font-size: 1.2em;
+        color: white;
+        padding: 5px 0;
+        border-radius: 7px;
+      }
+    }
+
+    .content__informations {
+      flex: 1 0 0;
+      padding: 0 30px;
+      position: relative;
+      // background-color: khaki;
+
+      .informations__title {
+        font-size: 2em;
+      }
+      .informations__genre {
+        margin-top: 5px;
+        font-size: 1em;
+        font-weight: 100;
+        color: #848484;
+      }
+      .informations__overview {
+        margin-top: 30px;
+        font-size: 1.2em;
+      }
+
+      .informations__footer {
+        margin-top: 60px;
+        width: 100%;
+
+        .footer__title {
+          font-size: 1.2em;
+          font-weight: 500;
+          color: #222;
+        }
+
+        .footer__cast {
+          margin-top: 20px;
+          width: 100%;
+          display: flex;
+          flex-flow: row nowrap;
+          overflow-x: scroll;
+          overflow-y: hidden;
+          -webkit-overflow-scrolling: touch;
+          -ms-overflow-style: -ms-autohiding-scrollbar;
+          position: absolute;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          .cast__actor {
+            margin-right: 20px;
+            min-width: 100px;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+            img {
+              height: 80px;
+              width: 80px;
+              border-radius: 100%;
+              cursor: pointer;
+              &:hover + .actor__name {
+                opacity: 1;
+              }
+            }
+            .actor__name {
+              width: 100px;
+              margin: 5px 0 0 0;
+              padding: 5px 8px;
+              background-color: black;
+              font-size: 0.9em;
+              text-align: center;
+              color: white;
+              border-radius: 5px;
+              transition: 0.5s ease-in-out;
+              opacity: 0;
+            }
+          }
+        }
+      }
+    }
+  }
 }

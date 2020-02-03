@@ -3,7 +3,7 @@ $primaryColorDarker: #ec3c51;
 $secondaryColor: #900048;
 $tertiaryColor: #272727;
 $lightWhite: #f3e9ee;
-$widthAside: 300px;
+$widthAside: 250px;
 
 .section__aside{
   .aside__content {
@@ -32,7 +32,6 @@ $widthAside: 300px;
           margin-top: 0;
         }
       }
-
 
       .menu__item {
         display: flex;
@@ -69,6 +68,18 @@ $widthAside: 300px;
             opacity: 1;
           }
           .radio__label{
+            opacity: 1;
+          }
+        }
+      }
+
+      .menu__item--checked{
+        opacity: 1;
+        .menu__item__icon{
+          img{
+            opacity: 0;
+          }
+          .icon--transition{
             opacity: 1;
           }
         }
