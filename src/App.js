@@ -90,6 +90,12 @@ function App() {
           {/* <Actor/> */}
         </main>
       </section>
+
+      <footer className="footer">
+        <h1 className="footer__made_by">Made by <a target="_blank" rel="noopener noreferrer" href="https://github.com/joaodjtr">João Victor</a><span role="img" aria-label="peace"> ✌</span></h1>
+        <p className="footer__credits">Data from <a target="_blank" rel="noopener noreferrer" href="https://www.themoviedb.org/documentation/api">The movieDB API</a> </p>
+        <p className="footer__credits">Icons made by <a target="_blank" rel="noopener noreferrer" href="https://www.flaticon.com/authors/freepik">Freepik</a> and <a target="_blank" rel="noopener noreferrer" href="https://www.flaticon.com/authors/those-icons">Those Icons</a> from  <a target="_blank" rel="noopener noreferrer" href="https://flaticon.com">www.flaticon.com</a></p>
+      </footer>
     </>
   );
 }
