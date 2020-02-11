@@ -10,9 +10,9 @@ function Cards({configs, movies, sort_by}) {
   const [posterSize, setPosterSize] = useState('')
 
   useEffect(()=>{
-    if(configs.data){
-      setBaseURL(configs.data.images.base_url)
-      setPosterSize(configs.data.images.poster_sizes[4])
+    if(configs.images){
+      setBaseURL(configs.images.base_url)
+      setPosterSize(configs.images.poster_sizes[4])
     }
   },[configs])
 
@@ -22,7 +22,7 @@ function Cards({configs, movies, sort_by}) {
         {
           `
           ${sort_by === "popularity.desc" ? "Popular movies" : ""}
-          ${sort_by === "vote_average.desc" ? "Top rating movies" : ""}
+          ${sort_by === "vote_average.desc" ? "Top rated movies" : ""}
           ${sort_by === "release_date.desc" ? "New movies" : ""} 
           `
         }
@@ -32,7 +32,7 @@ function Cards({configs, movies, sort_by}) {
 
         {
           movies.map(movie => {
-            let {id,poster_path, title, vote_average, overview} = movie.movie
+            let {id,poster_path, title, vote_average, overview, genres} = movie.movie
             let {cast} = movie
             overview = overview.substr(0, 200).concat('...')
             let rate
@@ -54,8 +54,8 @@ function Cards({configs, movies, sort_by}) {
 
                   <article className="movie__content">
                     <h3 className="movie__name">{title}</h3>
-                    <p className="movie__genre">...</p>
-                    <p className="movie_overview">{overview}</p>
+                    <p className="movie__genre">{genres}</p>
+                    <p className="movie__overview">{overview}</p>
                   </article>
                 </div>
                 <div className="card__movie_footer">

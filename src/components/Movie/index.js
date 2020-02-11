@@ -33,60 +33,60 @@ function Movie() {
           </p>
           <div className="informations__footer">
             <h3 className="footer__title">Cast</h3>
-            <ul className="footer__cast">
-              <li className="cast__actor">
+            <ul className="footer__frame">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>
-              <li className="cast__actor">
+              <li className="frame__actor">
                 <img src={me} alt="me" />
                 <span className="actor__name">João Victor</span>
               </li>

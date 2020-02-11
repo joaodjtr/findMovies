@@ -4,27 +4,28 @@ import api from './services/api'
 
 import "./styles/App.scss";
 
+import Actor from './components/Actor'
+import Movie from './components/Movie'
 import Cards from "./components/Cards";
 import AsideMenu from "./components/AsideMenu";
-// import Movie from './components/Movie'
 
 import logo from "./assets/logo.png";
 import searchIcon from "./assets/icons/search.svg";
 
 function App() {
   const [configs, setConfigs] = useState({})
-  const [baseURL, setBaseURL] = useState('')
-  const [posterSize, setPosterSize] = useState('')
   const [movies, setMovies] = useState([])
   const [sort_by, setSortBy] = useState('popularity.desc')
   
   useEffect(()=>{
     async function getConfigs(){
-      setConfigs(await api.use.get(`configuration?api_key=6ced056b0cb72f6bbce6b75bef270846`))
+      let {data} = await api.use.get(`configuration?api_key=${api.key}`)
+      let genres = await api.use.get(`genre/movie/list?api_key=${api.key}`)
+      data.genres = genres.data.genres
+      setConfigs(data)
     }
     getConfigs()
   },[])
-
 
   function handleSetMovies(handledMovies, sort_by){
     setMovies(handledMovies)
@@ -54,6 +55,7 @@ function App() {
         <main className="section__main">
           <Cards configs={configs} sort_by={sort_by} movies={movies}/>
           {/* <Movie/> */}
+          {/* <Actor/> */}
         </main>
       </section>
     </>

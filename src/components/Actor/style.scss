@@ -1,0 +1,79 @@
+$lightWhite: #f3e9ee;
+
+.full_page.actor{
+
+    .actor__content{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+
+        .content__actor_photo{
+            flex-basis: 400px;
+            height: 100%;
+            width: 400px;
+
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 12px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+        }
+        .content__actor_informations{
+            flex: 1 0 0;
+            padding: 0 30px;
+            position: relative;
+
+            .informations__name{
+                font-size: 2em;
+            }
+            .informations__age{
+                margin-top: 5px;
+                font-size: 1em;
+                font-weight: 100;
+                color: #848484;
+            }
+            .informations__biography{
+                margin-top: 30px;
+                font-size: 1.2em;
+            }
+
+            .informations__footer{
+                .footer__frame .frame__movie{
+                    margin-right: 20px;
+                    min-width: 100px;
+                    display: flex;
+                    flex-flow: column nowrap;
+                    align-items: center;
+                    justify-content: center;
+
+                    img{
+                        width: 80px;
+                        height: auto;
+                        border-radius: 6px;
+                        cursor: pointer;
+
+                        &:hover + .movie__name{
+                            opacity: 1;
+                        }
+                    }
+
+                    .movie__name{
+                        width: 100px;
+                        margin: 5px 0 0 0;
+                        padding: 5px 8px;
+                        background-color: black;
+                        font-size: .9em;
+                        text-align: center;
+                        color: white;
+                        border-radius: 5px;
+                        transition: .5s ease-in-out;
+                        opacity: 0;
+                    }
+                }
+            }
+        }
+    }
+}

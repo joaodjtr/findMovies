@@ -11,14 +11,16 @@ $widthAside: 250px;
     align-items: center;
     height: 100%;
     width: $widthAside;
-    padding: 30px 30px;
     position: fixed;
     top: 60px;
     left: 0;
     background-color: $tertiaryColor;
 
     ul.aside__menu {
+      height: 100%;
+      padding: 30px 30px 80px 30px;
       list-style: none;
+      overflow-y: scroll;
 
       .aside__menu__title{
         opacity: .8;

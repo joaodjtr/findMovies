@@ -25,6 +25,22 @@ $widthAside: 250px;
   text-decoration: none;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(155, 155, 155);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(127, 127, 127);
+}
+
 html,
 body {
   height: 100%;
@@ -108,7 +124,7 @@ h6 {
   position: fixed;
   top: 0;
   opacity: 1;
-  z-index: 999;
+  z-index: 998;
 }
 
 .section {
@@ -135,9 +151,40 @@ h6 {
 }
 
 .full_page {
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100%;
+  padding: 60px;
+  background-color: $lightWhite;
+
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar{
+    display: none;
+  }
+
+  .informations__footer{
+    margin-top: 30px;
+    width: 100%;
+
+    .footer__title{
+      font-size: 1.2em;
+      font-weight: 500;
+      color: #222;
+    }
+
+    .footer__frame {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      position: absolute;
+
+    }
+  }
 }
