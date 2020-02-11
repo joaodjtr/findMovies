@@ -8,7 +8,6 @@ import GenresItens from './GenresItens'
 
 
 function AsideMenu({handleSetMovies, configs}) {
-  const [movies, setMovies] = useState([])
   const [sort_by, setSortBy] = useState('popularity.desc')
   const [genres, setGenres] = useState({})
   const [renderGenres, setRenderGenres] = useState(false)
@@ -30,36 +29,10 @@ function AsideMenu({handleSetMovies, configs}) {
         strGenres += ","  + genre
       })
       let {data} = await api.use.get(`/discover/movie?api_key=${api.key}&sort_by=${sort_by}&${sort_by === "vote_average.desc" ? "vote_count.gte=1500" : ""}${sort_by === "release_date.desc" ? "vote_count.gte=100" : ""}&with_genres=${strGenres}`)
-      setMovies(await requestDetails(data.results))
-      
-      async function requestDetails(Movies){
-        return Promise.all(Movies.map( async (movie, i) => {
-          let {id} = movie
-          let cast = []
-          if(id !== 564296){
-            let response = await api.use.get(`/movie/${id}/credits?api_key=${api.key}`)
-            cast = response.data.cast
-          }
-        let genre
-          movie.genre_ids.map(id=>{
-            genres.map(g=>{
-              if(g.id === id){
-                if(!genre) genre = g.name
-                else genre += ", " + g.name
-              }
-            })
-          })
-          movie.genres = genre
-          return {movie, cast}
-        }))
-      }
+      handleSetMovies(data.results, sort_by, sort_by, strGenres)
     }
 
-  }, [sort_by,setMovies, genres, pressedGenres])
-
-  useEffect(()=>{
-    handleSetMovies(movies, sort_by)
-  },[movies])
+  }, [sort_by, genres, pressedGenres])
 
   function handleSetSortBy(value){
     setSortBy(value)

@@ -5,7 +5,7 @@ import nullActor from '../../assets/nullactor.png'
 
 import './style.scss'
 
-function Cards({configs, movies, sort_by}) {
+function Cards({configs, movies, title}) {
   const [baseURL, setBaseURL] = useState('')
   const [posterSize, setPosterSize] = useState('')
 
@@ -18,15 +18,7 @@ function Cards({configs, movies, sort_by}) {
 
   return (
     <article className="main__article">
-      <h1 className="article__title">
-        {
-          `
-          ${sort_by === "popularity.desc" ? "Popular movies" : ""}
-          ${sort_by === "vote_average.desc" ? "Top rated movies" : ""}
-          ${sort_by === "release_date.desc" ? "New movies" : ""} 
-          `
-        }
-      </h1>
+      <h1 className="article__title">{title}</h1>
 
       <div className="article__cards">
 
