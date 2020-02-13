@@ -1,14 +1,14 @@
 $lightWhite: #f3e9ee;
 
-.full_page.actor{
+.full_page.person{
 
-    .actor__content{
+    .person__content{
         height: 100%;
         width: 100%;
         display: flex;
         flex-flow: row nowrap;
 
-        .content__actor_photo{
+        .content__person_photo{
             flex-basis: 400px;
             height: 100%;
             width: 400px;
@@ -18,10 +18,10 @@ $lightWhite: #f3e9ee;
                 width: 100%;
                 object-fit: cover;
                 border-radius: 12px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+                box-shadow: 0 0 10px -4px rgba(0,0,0,0.2);
             }
         }
-        .content__actor_informations{
+        .content__person_informations{
             flex: 1 0 0;
             padding: 0 30px;
             position: relative;
@@ -29,7 +29,7 @@ $lightWhite: #f3e9ee;
             .informations__name{
                 font-size: 2em;
             }
-            .informations__age{
+            .informations__birthplace{
                 margin-top: 5px;
                 font-size: 1em;
                 font-weight: 100;

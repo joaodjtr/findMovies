@@ -186,6 +186,44 @@ h6 {
       position: absolute;
     }
   }
+  .full_page__close_button_field{
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    $sizeIcons: 45px;
+    height: $sizeIcons;
+    width: $sizeIcons;
+
+    .full_page__close_button_field__figure{
+      position: relative;
+      cursor: pointer;
+      height: $sizeIcons;
+      width: $sizeIcons;
+      img{
+        height: 100%;
+        width: 100%;
+        transition: opacity .25s ease-in-out;
+      }
+  
+      .close_button_field__figure__img--absolute{
+        position: absolute;
+        opacity: 0;
+      }
+    }
+
+    &:hover{
+      .full_page__close_button_field__figure{
+        img{
+          opacity: 0;
+        }
+
+        .close_button_field__figure__img--absolute{
+          opacity: 1;
+        }
+      }
+    }
+  }
+  
 }
 
 .footer {

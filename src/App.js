@@ -7,7 +7,7 @@ import "./styles/App.scss";
 import SearchBar from './components/SearchBar'
 import Cards from "./components/Cards";
 import AsideMenu from "./components/AsideMenu";
-// import Actor from './components/Actor'
+import Person from './components/Person'
 // import Movie from './components/Movie'
 
 import logo from "./assets/logo.png";
@@ -18,6 +18,7 @@ function App() {
   const [title, setTitle] = useState("Popular movies")
   const [sortBy, setSortBy] = useState('')
   const [pressedGenres, setPressedGenres] = useState('')
+  const [person, setPerson] = useState({})
   
   useEffect(()=>{
     async function getConfigs(){
@@ -42,9 +43,9 @@ function App() {
     // eslint-disable-next-line
     if(filter === "popularity.desc" || !filter && sortBy === "popularity.desc") setTitle("Popular movies")
     // eslint-disable-next-line
-    else if(filter === "vote_average.desc" || !filter === undefined && sortBy === "vote_average.desc") setTitle("Top rated movies")
+    else if(filter === "vote_average.desc" || !filter && sortBy === "vote_average.desc") setTitle("Top rated movies")
     // eslint-disable-next-line
-    else if(filter === "release_date.desc" || !filter || sortBy === "release_date.desc") setTitle("New movies")
+    else if(filter === "release_date.desc" || !filter && sortBy === "release_date.desc") setTitle("New movies")
     else setTitle(`Search for "${filter}"`)
 
     async function requestDetails(Movies){
@@ -72,6 +73,15 @@ function App() {
     }
   }
 
+  async function handleSetPerson(idPerson){
+    if(idPerson === undefined || idPerson === null){
+      setPerson({})
+    }else {
+      let {data} = await api.use.get(`/person/${idPerson}?api_key=${api.key}`)
+      setPerson(data)
+    }
+  }
+
   return (
     <>
       <header className="header"></header>
@@ -88,9 +98,10 @@ function App() {
           <AsideMenu configs={configs} handleSetMovies={handleSetMovies}/>
         </aside>
         <main className="section__main">
-          <Cards configs={configs} title={title} movies={movies}/>
+          <Cards configs={configs} title={title} movies={movies} handleSetPerson={handleSetPerson}/>
           {/* <Movie/> */}
-          {/* <Actor/> */}
+          {person.id ? <Person configs={configs} data={person} handleSetPerson={handleSetPerson}/> : ""}
+          {/* <Person configs={configs} data={person}/> */}
         </main>
       </section>
 

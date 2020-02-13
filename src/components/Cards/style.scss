@@ -87,7 +87,7 @@
               display: none;
             }
 
-            li.cast__actor {
+            li.cast__person {
               height: 100px;
               flex-basis: auto;
               flex-shrink: 0;
@@ -104,12 +104,12 @@
                 border-radius: 100%;
                 box-sizing: content-box;
 
-                &:hover + .actor__name {
+                &:hover + .person__name {
                   opacity: 1;
                 }
               }
 
-              .actor__name {
+              .person__name {
                 position: absolute;
                 margin-top: 60px;
                 width: 110px;

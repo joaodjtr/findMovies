@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
 
 import nullPoster from '../../assets/nullposter.png'
-import nullActor from '../../assets/nullactor.png'
+import nullPerson from '../../assets/nullperson.png'
 import emptyImg from '../../assets/empty.svg'
 
 import './style.scss'
 
-function Cards({configs, movies, title}) {
+function Cards({configs, movies, title, handleSetPerson}) {
   const [baseURL, setBaseURL] = useState('')
   const [posterSize, setPosterSize] = useState('')
 
@@ -16,6 +16,10 @@ function Cards({configs, movies, title}) {
       setPosterSize(configs.images.poster_sizes[4])
     }
   },[configs])
+
+  function handleClick(idPerson){
+    handleSetPerson(idPerson)
+  }
 
   return (
     <article className="main__article">
@@ -53,14 +57,16 @@ function Cards({configs, movies, title}) {
                 <div className="card__movie_footer">
                   <ul className="footer__cast">
                     {
-                      cast.map((actor, j)=>{
+                      cast.map((person, j)=>{
+                        let idPerson = person.id
+                        let {name, profile_path} = person
                         if(j < 5) {
                         return (
-                          <li key={`${id}-${actor.name}-${j}`} className="cast__actor">
+                          <li onClick={()=>handleClick(idPerson)} key={`${id}-${name}-${j}`} className="cast__person">
                             <img 
-                              src={actor.profile_path ? `${baseURL}original/${actor.profile_path}` : nullActor}
-                              alt={actor.name}/>
-                            <span className="actor__name">{ actor.name }</span>
+                              src={profile_path ? `${baseURL}original/${profile_path}` : nullPerson}
+                              alt={name}/>
+                            <span className="person__name">{ name }</span>
                           </li>
                         )
                         }
