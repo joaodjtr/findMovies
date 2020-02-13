@@ -23,6 +23,7 @@ function SearchBar({handleSetMovies}) {
 
   let timeout = null
   function handleChange(event) {
+    console.log(1)
     let {value} = event.target
     if(timeout) clearTimeout(timeout)
     timeout = setTimeout(() => {

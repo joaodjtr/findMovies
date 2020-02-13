@@ -7,8 +7,8 @@ import "./styles/App.scss";
 import SearchBar from './components/SearchBar'
 import Cards from "./components/Cards";
 import AsideMenu from "./components/AsideMenu";
-import Actor from './components/Actor'
-import Movie from './components/Movie'
+// import Actor from './components/Actor'
+// import Movie from './components/Movie'
 
 import logo from "./assets/logo.png";
 
@@ -18,6 +18,7 @@ function App() {
   const [title, setTitle] = useState("Popular movies")
   const [sortBy, setSortBy] = useState('')
   const [pressedGenres, setPressedGenres] = useState('')
+  
   useEffect(()=>{
     async function getConfigs(){
       let {data} = await api.use.get(`configuration?api_key=${api.key}`)
@@ -37,10 +38,12 @@ function App() {
       setSortBy(sort_by)
       setPressedGenres(strGenres)
     }
-
     setMovies(await requestDetails(handledMovies))
+    // eslint-disable-next-line
     if(filter === "popularity.desc" || !filter && sortBy === "popularity.desc") setTitle("Popular movies")
+    // eslint-disable-next-line
     else if(filter === "vote_average.desc" || !filter === undefined && sortBy === "vote_average.desc") setTitle("Top rated movies")
+    // eslint-disable-next-line
     else if(filter === "release_date.desc" || !filter || sortBy === "release_date.desc") setTitle("New movies")
     else setTitle(`Search for "${filter}"`)
 
@@ -93,8 +96,8 @@ function App() {
 
       <footer className="footer">
         <h1 className="footer__made_by">Made by <a target="_blank" rel="noopener noreferrer" href="https://github.com/joaodjtr">João Victor</a><span role="img" aria-label="peace"> ✌</span></h1>
-        <p className="footer__credits">Data from <a target="_blank" rel="noopener noreferrer" href="https://www.themoviedb.org/documentation/api">The movieDB API</a> </p>
-        <p className="footer__credits">Icons made by <a target="_blank" rel="noopener noreferrer" href="https://www.flaticon.com/authors/freepik">Freepik</a> and <a target="_blank" rel="noopener noreferrer" href="https://www.flaticon.com/authors/those-icons">Those Icons</a> from  <a target="_blank" rel="noopener noreferrer" href="https://flaticon.com">www.flaticon.com</a></p>
+        <p className="footer__attributes">Data from <a target="_blank" rel="noopener noreferrer" href="https://www.themoviedb.org/documentation/api">The movieDB API</a> </p>
+        <p className="footer__attributes">Icons made by <a target="_blank" rel="noopener noreferrer" href="https://www.flaticon.com/authors/freepik">Freepik</a> and <a target="_blank" rel="noopener noreferrer" href="https://www.flaticon.com/authors/those-icons">Those Icons</a> from  <a target="_blank" rel="noopener noreferrer" href="https://flaticon.com">www.flaticon.com</a></p>
       </footer>
     </>
   );

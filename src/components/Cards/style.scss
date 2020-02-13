@@ -11,7 +11,7 @@
       grid-row-gap: 100px;
       padding: 80px 0 0 0;
 
-      .card {
+      .cards__card {
         padding: 20px;
         background-color: white;
         border: 1.25px solid rgb(229, 229, 229);
@@ -129,6 +129,28 @@
         }
       }
 
+      .cards__no_results{
+        display: none;
+        &__figure{
+          height: 25vh;
+          width: auto;
+          display: flex;
+          justify-content: center;
+          img{
+            height: 100%;
+            width: auto;
+          }
+        }
+        &__message{
+          margin: 50px 0 0 0;
+          font-size: 1.5rem;
+          font-weight: 300;
+          line-height: 1.5;
+          text-align: center;
+          color: rgb(0, 0, 0);
+        }
+      }
+
       @media (max-width: 1610px) {
         & {
           grid-template-columns: 1fr 1fr;
@@ -158,6 +180,21 @@
             }
           }
         }
+      }
+    }
+
+    .article__cards--no_grid{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column nowrap;
+
+      .cards__card{
+        display: none;
+      }
+
+      .cards__no_results{
+        display: block;
       }
     }
   }

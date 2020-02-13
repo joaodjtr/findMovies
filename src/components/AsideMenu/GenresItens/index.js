@@ -2,9 +2,10 @@ import React from "react";
 
 function GenresItens({ genres, handleSetGenre }) {
   function handleClick(event) {
+    let {target} = event
     let pressed = true
-    if(!event.target.checked) pressed = false
-    handleSetGenre(event.target.value, pressed)
+    if(!target.checked) pressed = false
+    handleSetGenre(target.value, pressed)
   }
 
   return (
