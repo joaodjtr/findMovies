@@ -55,7 +55,6 @@ function Person({configs, data, handleSetPerson}) {
           </figure>
         </div>
 
-        <button className="full_page__close_button"><img className="full_page__close_button__img--absolute" src={closefill_icon} alt="CloseButton"/><img src={close_icon} alt="Close button"/></button>
         <div className="content__person_photo">
           <img src={`${photo ? baseURL+profileSize+photo : nullperson}`} alt={`${name}`} />
         </div>

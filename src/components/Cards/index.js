@@ -6,7 +6,7 @@ import emptyImg from '../../assets/empty.svg'
 
 import './style.scss'
 
-function Cards({configs, movies, title, handleSetPerson}) {
+function Cards({configs, movies, title, handleSetPerson, handleSetMovie}) {
   const [baseURL, setBaseURL] = useState('')
   const [posterSize, setPosterSize] = useState('')
 
@@ -17,8 +17,12 @@ function Cards({configs, movies, title, handleSetPerson}) {
     }
   },[configs])
 
-  function handleClick(idPerson){
+  function handleClickPerson(idPerson){
     handleSetPerson(idPerson)
+  }
+
+  function handleClickMovie(movie){
+    handleSetMovie(movie)
   }
 
   return (
@@ -51,7 +55,7 @@ function Cards({configs, movies, title, handleSetPerson}) {
                   <article className="movie__content">
                     <h3 className="movie__name">{title}</h3>
                     <p className="movie__genre">{genres}</p>
-                    <p className="movie__overview">{overview}</p>
+                    <p className="movie__overview">{overview} <span onClick={()=>{handleClickMovie(movie)}} className="movie__overview__seemore">[more]</span></p>
                   </article>
                 </div>
                 <div className="card__movie_footer">
@@ -62,7 +66,7 @@ function Cards({configs, movies, title, handleSetPerson}) {
                         let {name, profile_path} = person
                         if(j < 5) {
                         return (
-                          <li onClick={()=>handleClick(idPerson)} key={`${id}-${name}-${j}`} className="cast__person">
+                          <li onClick={()=>handleClickPerson(idPerson)} key={`${id}-${name}-${j}`} className="cast__person">
                             <img 
                               src={profile_path ? `${baseURL}original/${profile_path}` : nullPerson}
                               alt={name}/>

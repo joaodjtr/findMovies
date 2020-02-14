@@ -8,7 +8,7 @@ import SearchBar from './components/SearchBar'
 import Cards from "./components/Cards";
 import AsideMenu from "./components/AsideMenu";
 import Person from './components/Person'
-// import Movie from './components/Movie'
+import Movie from './components/Movie'
 
 import logo from "./assets/logo.png";
 
@@ -19,6 +19,7 @@ function App() {
   const [sortBy, setSortBy] = useState('')
   const [pressedGenres, setPressedGenres] = useState('')
   const [person, setPerson] = useState({})
+  const [movie, setMovie] = useState({}) 
   
   useEffect(()=>{
     async function getConfigs(){
@@ -73,6 +74,14 @@ function App() {
     }
   }
 
+  function handleSetMovie(data){
+    if(data === undefined || data === null || !data){
+      setMovie({})
+    }else{
+      setMovie(data)
+    }
+  }
+
   async function handleSetPerson(idPerson){
     if(idPerson === undefined || idPerson === null){
       setPerson({})
@@ -98,8 +107,8 @@ function App() {
           <AsideMenu configs={configs} handleSetMovies={handleSetMovies}/>
         </aside>
         <main className="section__main">
-          <Cards configs={configs} title={title} movies={movies} handleSetPerson={handleSetPerson}/>
-          {/* <Movie/> */}
+          <Cards configs={configs} title={title} movies={movies} handleSetPerson={handleSetPerson} handleSetMovie={handleSetMovie}/>
+          {movie.movie ? <Movie configs={configs} data={movie} handleSetPerson={handleSetPerson} handleSetMovie={handleSetMovie}/> : ""}
           {person.id ? <Person configs={configs} data={person} handleSetPerson={handleSetPerson}/> : ""}
           {/* <Person configs={configs} data={person}/> */}
         </main>

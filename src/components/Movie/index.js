@@ -1,95 +1,91 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import "./style.scss";
 
-import img from "../../assets/beach.jpg";
-import me from "../../assets/me.jpg";
+import close_icon from '../../assets/icons/close.svg'
+import closefill_icon from '../../assets/icons/closeFill.svg'
+import nullperson from '../../assets/nullperson.png'
+import nullposter from '../../assets/nullposter.png'
 
-function Movie() {
+function Movie({data, configs, handleSetMovie, handleSetPerson}) {
+  const [baseURL, setBaseURL] = useState('')
+  const [profileSize, setProfileSize] = useState('')
+  const [posterSize, setPosterSize] = useState('')
+  
+  const [title, setTitle] = useState('')
+  const [photo, setPhoto] = useState('')
+  const [genres, setGenres] = useState('')
+  const [overview, setOverview] = useState('')
+  const [voteAverage, setVoteAverage] = useState(null)
+  const [rate, setRate] = useState('')
+  const [cast, setCast] = useState([])
+
+  useEffect(()=>{
+    if(voteAverage < 6) setRate("rate--low")
+    else if(voteAverage < 8) setRate("rate--medium")
+    else if(voteAverage <= 10) setRate("rate--high")
+  },[voteAverage])
+
+  useEffect(()=>{
+    if(configs.images){
+      setBaseURL(configs.images.base_url)
+      setProfileSize(configs.images.profile_sizes[2])
+      setPosterSize(configs.images.poster_sizes[5])
+    }
+  },[configs])
+
+  useEffect(()=>{
+    if(data.movie){
+      let {movie} = data
+      setTitle(movie.title)
+      setPhoto(movie.poster_path)
+      setOverview(movie.overview)
+      setGenres(movie.genres)
+      setVoteAverage(movie.vote_average)
+      setCast(data.cast)
+    }
+  }, [data])
+
+  function handleClickPerson(idPerson){
+    handleSetPerson(idPerson)
+  }
+
+  function handleCloseButton(){
+    handleSetMovie()
+  }
+
   return (
     <div className="full_page movie">
       <article className="movie__content">
+
+        <div className="full_page__close_button_field">
+          <figure onClick={()=>{handleCloseButton()}} className="full_page__close_button_field__figure">
+            <img className="close_button_field__figure__img--absolute" src={closefill_icon} alt="Close button"/>
+            <img src={close_icon} alt="Close button"/>
+          </figure>
+        </div>
+
         <figure className="content__poster">
-          <img src={img} alt="teste" />
-          <span className="poster__rate rate--medium">7.6</span>
+          <img src={`${photo ? baseURL+posterSize+photo : nullposter}`} alt={`${title}`} />
+          {
+          }
+          <span className={`poster__rate ${rate}`}>{voteAverage}</span>
         </figure>
         <div className="content__informations">
-          <h1 className="informations__title">Avengers - Endgame</h1>
-          <h3 className="informations__genre">Action, Adventure, Sci-fi</h3>
-          <p className="informations__overview">
-            Ullamco sunt ullamco enim proident officia pariatur minim aliquip
-            voluptate minim. Eiusmod ipsum elit ea pariatur quis do. Cupidatat
-            incididunt magna veniam laborum cillum enim culpa cillum culpa ex
-            incididunt. Commodo excepteur Lorem deserunt enim consectetur.
-            Laboris elit nostrud duis nulla sit sunt velit duis laboris sunt
-            commodo consequat qui pariatur.
-            <br />
-            Commodo dolore amet esse ad commodo velit. Incididunt qui ea dolore
-            et commodo qui ullamco ullamco velit fugiat qui qui officia esse.
-            Fugiat dolor reprehenderit ea esse cillum duis magna. Occaecat minim
-            consectetur laborum pariatur amet. Elit esse aute ipsum aute aliquip
-            ex enim cupidatat. Voluptate irure dolor laboris esse cillum
-            deserunt qui Lorem aliquip minim dolore do exercitation laborum.
-          </p>
+          <h1 className="informations__title">{title}</h1>
+          <h3 className="informations__genre">{genres}</h3>
+          <p className="informations__overview">{overview}</p>
           <div className="informations__footer">
             <h3 className="footer__title">Cast</h3>
             <ul className="footer__frame">
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
-              <li className="frame__actor">
-                <img src={me} alt="me" />
-                <span className="actor__name">João Victor</span>
-              </li>
+              {
+                cast.map((person,i) => (
+                  <li key={person.id + " " + i} className="frame__actor" onClick={()=>{handleClickPerson(person.id)}}>
+                    <img src={ person.profile_path ? baseURL+profileSize+person.profile_path : nullperson} alt={person.name}/>
+                    <span className="actor__name">{person.name}</span>
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </div>

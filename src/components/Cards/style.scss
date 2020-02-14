@@ -49,18 +49,24 @@
             margin-left: 20px;
 
             .movie__name {
-              font-size: 1.3em;
+              font-size: 1.3rem;
             }
 
             .movie__genre {
-              font-size: .9em;
+              font-size: .9rem;
               color: #848484;
             }
 
             .movie__overview {
               margin: 10px 0 0 0;
-              font-size: 1em;
+              font-size: 1rem;
               font-weight: 400;
+
+              .movie__overview__seemore{
+                cursor: pointer;
+                color: #0000EE;
+                padding: 0 2.5px;
+              }
             }
           }
         }
