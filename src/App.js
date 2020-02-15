@@ -109,7 +109,7 @@ function App() {
         <main className="section__main">
           <Cards configs={configs} title={title} movies={movies} handleSetPerson={handleSetPerson} handleSetMovie={handleSetMovie}/>
           {movie.movie ? <Movie configs={configs} data={movie} handleSetPerson={handleSetPerson} handleSetMovie={handleSetMovie}/> : ""}
-          {person.id ? <Person configs={configs} data={person} handleSetPerson={handleSetPerson}/> : ""}
+          {person.id ?<Person configs={configs} data={person} handleSetPerson={handleSetPerson}/> : ""}
           {/* <Person configs={configs} data={person}/> */}
         </main>
       </section>

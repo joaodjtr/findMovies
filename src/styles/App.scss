@@ -189,8 +189,9 @@ h6 {
 
   .full_page__close_button_field{
     position: absolute;
-    top: 25px;
-    right: 25px;
+    top: 30px;
+    right: 30px;
+    z-index: 998;
     $sizeIcons: 45px;
     height: $sizeIcons;
     width: $sizeIcons;

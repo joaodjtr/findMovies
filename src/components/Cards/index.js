@@ -43,41 +43,19 @@ function Cards({configs, movies, title, handleSetPerson, handleSetMovie}) {
 
             return(
               <div key={`${id}-${title}`} className="cards__card">
-                <div className="card__movie">
-
-                  <figure className="movie__poster">
+                  {/* <figure className="movie__poster"> */}
                     <img 
+                      className="movie__poster"
                       src={poster_path ? `${baseURL}${posterSize}${poster_path}` : nullPoster}
                       alt={`${title} poster`}/>
                     <span className={`movie__rate ${rate}`}>{vote_average}</span>
-                  </figure>
+                  {/* </figure> */}
 
                   <article className="movie__content">
                     <h3 className="movie__name">{title}</h3>
                     <p className="movie__genre">{genres}</p>
                     <p className="movie__overview">{overview} <span onClick={()=>{handleClickMovie(movie)}} className="movie__overview__seemore">[more]</span></p>
                   </article>
-                </div>
-                <div className="card__movie_footer">
-                  <ul className="footer__cast">
-                    {
-                      cast.map((person, j)=>{
-                        let idPerson = person.id
-                        let {name, profile_path} = person
-                        if(j < 5) {
-                        return (
-                          <li onClick={()=>handleClickPerson(idPerson)} key={`${id}-${name}-${j}`} className="cast__person">
-                            <img 
-                              src={profile_path ? `${baseURL}original/${profile_path}` : nullPerson}
-                              alt={name}/>
-                            <span className="person__name">{ name }</span>
-                          </li>
-                        )
-                        }
-                      })
-                    }
-                  </ul>
-                </div>
               </div>
             )
           })

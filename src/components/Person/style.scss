@@ -1,6 +1,13 @@
 $lightWhite: #f3e9ee;
 
+body::-webkit-scrollbar{
+  display: none;
+}
+
 .full_page.person {
+  max-height: 100vh;
+  overflow-y: scroll;
+  padding: 0;
   .person__content {
     height: 100%;
     width: 100%;
@@ -16,27 +23,33 @@ $lightWhite: #f3e9ee;
         height: 100%;
         width: 100%;
         object-fit: cover;
-        border-radius: 12px;
         box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.2);
       }
     }
     .content__person_informations {
       flex: 1 0 0;
-      padding: 0 30px;
+      padding: 30px;
       position: relative;
 
       .informations__name {
-        font-size: 2em;
+        font-size: 3rem;
+        padding-right: 50px;
       }
       .informations__birthplace {
-        margin-top: 5px;
+        margin-top: 10px;
         font-size: 1em;
         font-weight: 100;
-        color: #848484;
+        color: rgb(51, 51, 51);
+
+        img{
+          height: 1em;
+          width: 1em;
+        }
       }
       .informations__biography {
-        margin-top: 30px;
-        font-size: 1.2em;
+        margin-top: 20px;
+        font-size: 1.3em;
+        color: black;
       }
 
       .informations__footer {

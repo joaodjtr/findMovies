@@ -4,6 +4,7 @@ import img from "../../assets/beach.jpg";
 import close_icon from '../../assets/icons/close.svg'
 import closefill_icon from '../../assets/icons/closeFill.svg'
 import nullperson from '../../assets/nullperson.png'
+import pin from '../../assets/icons/pin.svg'
 
 import "./style.scss";
 
@@ -33,10 +34,17 @@ function Person({configs, data, handleSetPerson}) {
       setPhoto(data.profile_path)
       setBio(data.biography)
       setBirthplace(data.place_of_birth)
-      let dt = new Date()
-      let dt2 = new Date(data.birthday)
-      let value = (((dt - dt2)/31536000000).toString().match(/^-?\d+(?:\.\d{0,0})?/)[0].replace('.',''))
-      setAge(value)
+      
+      if(data.place_of_birth === null || !data.place_of_birth) setBirthplace('')
+      else setBirthplace(data.place_of_birth)
+
+      if(data.birthday === null || !data.birthday) setAge('')
+      else{
+        let dt = new Date()
+        let dt2 = new Date(data.birthday)
+        let value = (((dt - dt2)/31536000000).toString().match(/^-?\d+(?:\.\d{0,0})?/)[0].replace('.',''))
+        setAge(value)
+      }
     }
   }, [data])
 
@@ -60,10 +68,15 @@ function Person({configs, data, handleSetPerson}) {
         </div>
         <div className="content__person_informations">
           <h1 className="informations__name">{name}</h1>
-          <h3 className="informations__birthplace">{birthplace} - {age} years old.</h3>
-          <p className="informations__biography">
-            {bio}
-          </p>
+          {
+            birthplace !== "" || age !== "" ? <h3 className="informations__birthplace">
+              {birthplace !== "" ? <><img src={pin} alt="Pin icon"/> {birthplace}</> : ""} {age !== "" && `${birthplace}` !== "" ? "-" : ""} {age !== "" ? `${age} years old.` : ""}</h3> : ""
+          }
+          {
+            bio === ""
+            ? <p className="informations__biography informations__biography--no_biography">We didn't found any biographies of this person.</p>
+            : <p className="informations__biography">{bio}</p>
+          }
           <div className="informations__footer">
                 <h3 className="footer__title">Movies</h3>
                 <ul className="footer__frame">
