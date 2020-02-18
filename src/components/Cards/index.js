@@ -43,13 +43,13 @@ function Cards({configs, movies, title, handleSetPerson, handleSetMovie}) {
 
             return(
               <div key={`${id}-${title}`} className="cards__card">
-                  {/* <figure className="movie__poster"> */}
+                  <figure className="movie__poster">
                     <img 
-                      className="movie__poster"
                       src={poster_path ? `${baseURL}${posterSize}${poster_path}` : nullPoster}
                       alt={`${title} poster`}/>
+                    
                     <span className={`movie__rate ${rate}`}>{vote_average}</span>
-                  {/* </figure> */}
+                  </figure>
 
                   <article className="movie__content">
                     <h3 className="movie__name">{title}</h3>

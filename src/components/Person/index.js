@@ -75,10 +75,10 @@ function Person({configs, data, handleSetPerson}) {
           {
             bio === ""
             ? <p className="informations__biography informations__biography--no_biography">We didn't found any biographies of this person.</p>
-            : <p className="informations__biography">{bio}</p>
+            : <><h3 className="informations__topic_title">Biography</h3>  <p className="informations__biography">{bio}</p></>
           }
           <div className="informations__footer">
-                <h3 className="footer__title">Movies</h3>
+                <h3 className="informations__topic_title">Movies</h3>
                 <ul className="footer__frame">
                     <li className="frame__movie">
                         <img src={img} alt="Alt"/>

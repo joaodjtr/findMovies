@@ -29,8 +29,9 @@ function Movie({data, configs, handleSetMovie, handleSetPerson}) {
   useEffect(()=>{
     if(configs.images){
       setBaseURL(configs.images.base_url)
+      console.log(configs.images)
       setProfileSize(configs.images.profile_sizes[2])
-      setPosterSize(configs.images.poster_sizes[5])
+      setPosterSize(configs.images.backdrop_sizes[3])
     }
   },[configs])
 
@@ -38,7 +39,7 @@ function Movie({data, configs, handleSetMovie, handleSetPerson}) {
     if(data.movie){
       let {movie} = data
       setTitle(movie.title)
-      setPhoto(movie.poster_path)
+      setPhoto(movie.backdrop_path)
       setOverview(movie.overview)
       setGenres(movie.genres)
       setVoteAverage(movie.vote_average)
@@ -74,9 +75,10 @@ function Movie({data, configs, handleSetMovie, handleSetPerson}) {
         <div className="content__informations">
           <h1 className="informations__title">{title}</h1>
           <h3 className="informations__genre">{genres}</h3>
+          <h3 className="informations__topic_title">Overview</h3>
           <p className="informations__overview">{overview}</p>
           <div className="informations__footer">
-            <h3 className="footer__title">Cast</h3>
+            <h3 className="informations__topic_title">Cast</h3>
             <ul className="footer__frame">
               {
                 cast.map((person,i) => (

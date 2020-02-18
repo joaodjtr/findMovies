@@ -1,10 +1,11 @@
 $lightWhite: #f3e9ee;
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: none;
 }
 
 .full_page.person {
+  background-color: black;
   max-height: 100vh;
   overflow-y: scroll;
   padding: 0;
@@ -12,77 +13,91 @@ body::-webkit-scrollbar{
     height: 100%;
     width: 100%;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
 
     .content__person_photo {
-      flex-basis: 400px;
       height: 100%;
-      width: 400px;
+      width: 100%;
+      margin: 30px 0 0 0;
+      text-align: center;
 
       img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.2);
+        height: 500px;
+        width: auto;
+        border-radius: 7px;
+        // box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.2);
       }
     }
     .content__person_informations {
       flex: 1 0 0;
-      padding: 30px;
+      padding: 0 120px;
       position: relative;
 
-      .informations__name {
-        font-size: 3rem;
-        padding-right: 50px;
+      .informations__topic_title{
+        color: white;
       }
+
+      .informations__name {
+        margin: 20px 0 0 0;
+        font-size: 3rem;
+        text-align: center;
+        color: white;
+      }
+
       .informations__birthplace {
         margin-top: 10px;
         font-size: 1em;
         font-weight: 100;
-        color: rgb(51, 51, 51);
+        text-align: center;
+        color: white;
 
-        img{
+        img {
           height: 1em;
           width: 1em;
         }
       }
       .informations__biography {
-        margin-top: 20px;
+        margin: 10px 0 0 0;
         font-size: 1.3em;
-        color: black;
+        color: white;
       }
 
       .informations__footer {
-        .footer__frame .frame__movie {
-          margin-right: 20px;
-          min-width: 100px;
+
+        .footer__frame{
+          margin: 20px 0 0 0;
           display: flex;
-          flex-flow: column nowrap;
-          align-items: center;
-          justify-content: center;
-
-          img {
-            width: 80px;
-            height: auto;
-            border-radius: 6px;
-            cursor: pointer;
-
-            &:hover + .movie__name {
-              opacity: 1;
+          .frame__movie {
+            margin-right: 20px;
+            min-width: 100px;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+  
+            img {
+              width: 80px;
+              height: auto;
+              border-radius: 6px;
+              cursor: pointer;
+  
+              &:hover + .movie__name {
+                opacity: 1;
+              }
             }
-          }
-
-          .movie__name {
-            width: 100px;
-            margin: 5px 0 0 0;
-            padding: 5px 8px;
-            background-color: black;
-            font-size: 0.9em;
-            text-align: center;
-            color: white;
-            border-radius: 5px;
-            transition: 0.5s ease-in-out;
-            opacity: 0;
+  
+            .movie__name {
+              width: 100px;
+              margin: 5px 0 0 0;
+              padding: 5px 8px;
+              background-color: black;
+              font-size: 0.9em;
+              text-align: center;
+              color: white;
+              border-radius: 5px;
+              transition: 0.5s ease-in-out;
+              opacity: 0;
+            }
           }
         }
       }
