@@ -2,13 +2,14 @@ import React, {useState, useEffect} from "react";
 
 import img from "../../assets/beach.jpg";
 import close_icon from '../../assets/icons/close.svg'
-import closefill_icon from '../../assets/icons/closeFill.svg'
+import nullposter from '../../assets/nullposter.png'
 import nullperson from '../../assets/nullperson.png'
 import pin from '../../assets/icons/pin.svg'
 
 import "./style.scss";
+import api from "../../services/api";
 
-function Person({configs, data, handleSetPerson}) {
+function Person({configs, data, handleSetPerson, handleSetMovie, requestMovieDetails}) {
   const [baseURL, setBaseURL] = useState('')
   const [profileSize, setProfileSize] = useState('')
   const [posterSize, setPosterSize] = useState('')
@@ -18,12 +19,13 @@ function Person({configs, data, handleSetPerson}) {
   const [bio, setBio] = useState('')
   const [birthplace, setBirthplace] = useState('')
   const [age, setAge] = useState('')
+  const [movies, setMovies] = useState([])
 
   useEffect(()=>{
     if(configs.images){
       setBaseURL(configs.images.base_url)
       setProfileSize(configs.images.profile_sizes[3])
-      setPosterSize(configs.images.poster_sizes[5])
+      setPosterSize(configs.images.poster_sizes[3])
     }
     
   },[configs])
@@ -45,11 +47,24 @@ function Person({configs, data, handleSetPerson}) {
         let value = (((dt - dt2)/31536000000).toString().match(/^-?\d+(?:\.\d{0,0})?/)[0].replace('.',''))
         setAge(value)
       }
+
+      async function getMovieData(){
+        let movieData = await api.use(`/discover/movie?with_cast=${data.id}&sort_by=popularity.desc&api_key=${api.key}`)
+        let movieArray = Array.from(movieData.data.results)
+        setMovies(await requestMovieDetails(movieArray))
+      }
+
+      getMovieData()
     }
   }, [data])
 
   function handleCloseButton(){
     handleSetPerson()
+  }
+
+  function handleClickMovie(movie){
+    handleSetPerson()
+    handleSetMovie(movie)
   }
 
   return (
@@ -58,7 +73,6 @@ function Person({configs, data, handleSetPerson}) {
 
         <div className="full_page__close_button_field">
           <figure onClick={()=>{handleCloseButton()}} className="full_page__close_button_field__figure">
-            <img className="close_button_field__figure__img--absolute" src={closefill_icon} alt="Close button"/>
             <img src={close_icon} alt="Close button"/>
           </figure>
         </div>
@@ -80,34 +94,24 @@ function Person({configs, data, handleSetPerson}) {
           <div className="informations__footer">
                 <h3 className="informations__topic_title">Movies</h3>
                 <ul className="footer__frame">
-                    <li className="frame__movie">
-                        <img src={img} alt="Alt"/>
-                        <span className="movie__name">Fancy beach</span>
-                    </li>
-                    <li className="frame__movie">
-                        <img src={img} alt="Alt"/>
-                        <span className="movie__name">Fancy beach</span>
-                    </li>
-                    <li className="frame__movie">
-                        <img src={img} alt="Alt"/>
-                        <span className="movie__name">Fancy beach</span>
-                    </li>
-                    <li className="frame__movie">
-                        <img src={img} alt="Alt"/>
-                        <span className="movie__name">Fancy beach</span>
-                    </li>
-                    <li className="frame__movie">
-                        <img src={img} alt="Alt"/>
-                        <span className="movie__name">Fancy beach</span>
-                    </li>
-                    <li className="frame__movie">
-                        <img src={img} alt="Alt"/>
-                        <span className="movie__name">Fancy beach</span>
-                    </li>
-                    <li className="frame__movie">
-                        <img src={img} alt="Alt"/>
-                        <span className="movie__name">Fancy beach</span>
-                    </li>
+
+                    {
+                      movies.length > 0 ? movies.map((item,i)=>{
+                        let {poster_path, title, overview, genres} = item.movie
+                        return(
+                        <li key={`${item.movie.id+i+"mini"}`} className="frame__mini_movie">
+                          <figure className="mini_movie__poster">
+                            <img src={`${poster_path ? baseURL+posterSize+poster_path : nullposter}`} alt={`${title}`}/>
+                          </figure>
+                          <div className="mini_movie__content">
+                            <h1 className="mini_movie__content__title">{title}</h1>
+                            <p className="mini_movie__content__genres">{genres}</p>
+                            <p className="mini_movie__content__overview">{overview.substring(0,120).concat('...')}<span onClick={()=>{handleClickMovie(item)}} className="mini_movie__seemore">[more]</span></p>
+                          </div>
+                        </li>
+                        )
+                      }) : ""
+                    }
                 </ul>
           </div>
         </div>

@@ -17,10 +17,6 @@ function Cards({configs, movies, title, handleSetPerson, handleSetMovie}) {
     }
   },[configs])
 
-  function handleClickPerson(idPerson){
-    handleSetPerson(idPerson)
-  }
-
   function handleClickMovie(movie){
     handleSetMovie(movie)
   }

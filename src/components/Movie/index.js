@@ -3,7 +3,6 @@ import React, {useState, useEffect} from "react";
 import "./style.scss";
 
 import close_icon from '../../assets/icons/close.svg'
-import closefill_icon from '../../assets/icons/closeFill.svg'
 import nullperson from '../../assets/nullperson.png'
 import nullposter from '../../assets/nullposter.png'
 
@@ -27,9 +26,9 @@ function Movie({data, configs, handleSetMovie, handleSetPerson}) {
   },[voteAverage])
 
   useEffect(()=>{
+    console.log(1)
     if(configs.images){
       setBaseURL(configs.images.base_url)
-      console.log(configs.images)
       setProfileSize(configs.images.profile_sizes[2])
       setPosterSize(configs.images.backdrop_sizes[3])
     }
@@ -61,7 +60,6 @@ function Movie({data, configs, handleSetMovie, handleSetPerson}) {
 
         <div className="full_page__close_button_field">
           <figure onClick={()=>{handleCloseButton()}} className="full_page__close_button_field__figure">
-            <img className="close_button_field__figure__img--absolute" src={closefill_icon} alt="Close button"/>
             <img src={close_icon} alt="Close button"/>
           </figure>
         </div>

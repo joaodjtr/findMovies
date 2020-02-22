@@ -1,7 +1,7 @@
 // Montserrat
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap");
 // Source Sans Pro
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600&display=swap");
 
 $primaryColor: #ff4057;
 $primaryColorDarker: #ec3c51;
@@ -58,7 +58,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #222;
+  color: black;
   font-family: Montserrat;
 }
 
@@ -183,9 +183,9 @@ h6 {
   .full_page__close_button_field{
     position: absolute;
     top: 30px;
-    right: 30px;
+    right: 60px;
     z-index: 998;
-    $sizeIcons: 45px;
+    $sizeIcons: 35px;
     height: $sizeIcons;
     width: $sizeIcons;
 
@@ -194,10 +194,18 @@ h6 {
       cursor: pointer;
       height: $sizeIcons;
       width: $sizeIcons;
+
       img{
         height: 100%;
         width: 100%;
+        position: relative;
+        opacity: .7;
         transition: opacity .25s ease-in-out;
+        z-index: 998;
+      }
+
+      &:hover img{
+        opacity: 1;
       }
   
       .close_button_field__figure__img--absolute{
@@ -206,17 +214,6 @@ h6 {
       }
     }
 
-    &:hover{
-      .full_page__close_button_field__figure{
-        img{
-          opacity: 0;
-        }
-
-        .close_button_field__figure__img--absolute{
-          opacity: 1;
-        }
-      }
-    }
   }
   
 }

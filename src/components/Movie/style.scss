@@ -53,7 +53,7 @@
 
     .content__informations {
       flex: 1 0 0;
-      padding: 30px 120px 0;
+      padding: 30px 120px;
       position: relative;
       display: flex;
       align-items: center;
@@ -79,8 +79,10 @@
         color: white;
       }
       .informations__overview {
+        width: 100%;
         margin: 10px 0 0 0;
         font-size: 1.2em;
+        text-align: left;
         color: white;
       }
 
@@ -97,6 +99,7 @@
             height: auto;
             width: 100%;
             position: relative;
+            cursor: pointer;
             img {
               height: 200px;
               width: 100%;

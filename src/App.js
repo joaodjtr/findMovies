@@ -31,6 +31,10 @@ function App() {
     getConfigs()
   },[])
 
+  useEffect(()=>{
+    console.log(movie)
+  },[movie])
+
   async function handleSetMovies(handledMovies, filter, sort_by, strGenres){
 
     if(!handledMovies){
@@ -40,7 +44,8 @@ function App() {
       setSortBy(sort_by)
       setPressedGenres(strGenres)
     }
-    setMovies(await requestDetails(handledMovies))
+
+    setMovies(await requestMovieDetails(handledMovies))
     // eslint-disable-next-line
     if(filter === "popularity.desc" || !filter && sortBy === "popularity.desc") setTitle("Popular movies")
     // eslint-disable-next-line
@@ -48,30 +53,31 @@ function App() {
     // eslint-disable-next-line
     else if(filter === "release_date.desc" || !filter && sortBy === "release_date.desc") setTitle("New movies")
     else setTitle(`Search for "${filter}"`)
+    
+  }
 
-    async function requestDetails(Movies){
-      return Promise.all(Movies.map( async (movie, i) => {
-        let {id} = movie
-        let cast = []
-        let genres = configs.genres
+  async function requestMovieDetails(Movies){
+    return Promise.all(Movies.map( async (movie, i) => {
+      let {id} = movie
+      let cast = []
+      let genres = configs.genres
 
-        if(id !== 564296){
-          let response = await api.use.get(`/movie/${id}/credits?api_key=${api.key}`)
-          cast = response.data.cast
-        }
-        let genre
-        movie.genre_ids.forEach(id=>{
-          genres.forEach(g=>{
-            if(g.id === id){
-              if(!genre) genre = g.name
-              else genre += ", " + g.name
-            }
-          })
+      if(id !== 564296){
+        let response = await api.use.get(`/movie/${id}/credits?api_key=${api.key}`)
+        cast = response.data.cast
+      }
+      let genre
+      movie.genre_ids.forEach(id=>{
+        genres.forEach(g=>{
+          if(g.id === id){
+            if(!genre) genre = g.name
+            else genre += ", " + g.name
+          }
         })
-        movie.genres = genre
-        return {movie, cast}
-      }))
-    }
+      })
+      movie.genres = genre
+      return {movie, cast}
+    }))
   }
 
   function handleSetMovie(data){
@@ -109,8 +115,7 @@ function App() {
         <main className="section__main">
           <Cards configs={configs} title={title} movies={movies} handleSetPerson={handleSetPerson} handleSetMovie={handleSetMovie}/>
           {movie.movie ? <Movie configs={configs} data={movie} handleSetPerson={handleSetPerson} handleSetMovie={handleSetMovie}/> : ""}
-          {person.id ?<Person configs={configs} data={person} handleSetPerson={handleSetPerson}/> : ""}
-          {/* <Person configs={configs} data={person}/> */}
+          {person.id ?<Person configs={configs} data={person} handleSetPerson={handleSetPerson} handleSetMovie={handleSetMovie} requestMovieDetails={requestMovieDetails}/> : ""}
         </main>
       </section>
 
