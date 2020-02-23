@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react";
 
 import api from './services/api'
 
-import "./styles/App.scss";
+import "./App.scss";
 
 import SearchBar from './components/SearchBar'
 import Cards from "./components/Cards";
@@ -102,10 +102,10 @@ function App() {
       <header className="header"></header>
 
       <header className="header header--fixed">
+        <SearchBar handleSetMovies={handleSetMovies}/>
         <figure className="header__logo">
           <img src={logo} alt="Logo" />
         </figure>
-        <SearchBar handleSetMovies={handleSetMovies}/>
       </header>
 
       <section className="section">

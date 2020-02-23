@@ -8,8 +8,6 @@ $primaryColorDarker: #ec3c51;
 $secondaryColor: #900048;
 $tertiaryColor: #272727;
 $lightWhite: #f3e9ee;
-// $tertiaryColor: #240041;
-// $tertiaryColor: #111d5e;
 $widthAside: 250px;
 
 * {
@@ -72,7 +70,62 @@ h6 {
   padding: 0;
   opacity: 0;
 
+  @media (max-width: 775px) {
+    $duration: 0.5s;
+    $delay: 0;
+
+    figure.header__logo {
+      width: 100%;
+    }
+
+    div.header__search_bar {
+      width: calc(5.2rem + 40px); // 40px margin-left and right / 1.3 size icons * 4
+      transition: $duration width;
+      .search_bar__field {
+        padding: 0;
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        img {
+          height: 1.3rem;
+          margin: 0;
+          cursor: pointer;
+          &:first-child {
+            margin-right: 10px;
+          }
+        }
+
+        input[type="text"] {
+          width: 0;
+          transition: $duration width;
+        }
+
+        .search_bar__icon--none {
+          display: inline-block;
+          background-color: $primaryColor;
+        }
+      }
+    }
+
+    div.header__search_bar.search_bar--fullwidth {
+      width: 100%;
+
+      .search_bar__field {
+        input[type="text"] {
+          width: 100%;
+          transition: $duration width;
+          transition-delay: $delay;
+        }
+      }
+
+      & + figure.header__logo {
+        margin-left: -100%;
+      }
+    }
+  }
+
   &__logo {
+    order: 1;
     height: 100%;
     width: $widthAside;
     display: flex;
@@ -80,6 +133,7 @@ h6 {
     align-items: center;
     padding: 15px 10px;
     background-color: $tertiaryColor;
+    transition: 0.5s margin-left;
     img {
       height: 30px;
       width: auto;
@@ -87,6 +141,7 @@ h6 {
   }
 
   &__search_bar {
+    order: 2;
     height: 100%;
     width: calc(100% - #{$widthAside});
     display: flex;
@@ -104,6 +159,11 @@ h6 {
         height: 1em;
         transform: scaleX(-1);
         margin-right: 10px;
+      }
+
+      .search_bar__icon--none {
+        display: none;
+        margin: 0;
       }
 
       input[type="text"] {
@@ -136,6 +196,7 @@ h6 {
   align-items: flex-start;
 
   &__aside {
+    // styled on AsideMenu component
     min-height: calc(100vh - 60px);
     width: $widthAside;
     padding: 30px 10px;
@@ -147,6 +208,21 @@ h6 {
     width: calc(100% - #{$widthAside});
     padding: 30px 30px;
     background-color: $lightWhite;
+  }
+
+  @media (max-width: 775px) {
+    aside.section__aside {
+      position: fixed;
+      left: $widthAside * -1;
+      div.aside__content {
+        position: fixed;
+        left: $widthAside * -1;
+      }
+    }
+
+    &__main {
+      width: 100%;
+    }
   }
 }
 
@@ -165,7 +241,7 @@ h6 {
   &::-webkit-scrollbar {
     display: none;
   }
-  
+
   .informations__topic_title {
     margin: 30px 0 0 0;
     font-family: Montserrat;
@@ -177,10 +253,9 @@ h6 {
   .informations__footer {
     padding: 0;
     width: 100%;
-
   }
 
-  .full_page__close_button_field{
+  .full_page__close_button_field {
     position: absolute;
     top: 30px;
     right: 60px;
@@ -189,33 +264,31 @@ h6 {
     height: $sizeIcons;
     width: $sizeIcons;
 
-    .full_page__close_button_field__figure{
+    .full_page__close_button_field__figure {
       position: relative;
       cursor: pointer;
       height: $sizeIcons;
       width: $sizeIcons;
 
-      img{
+      img {
         height: 100%;
         width: 100%;
         position: relative;
-        opacity: .7;
-        transition: opacity .25s ease-in-out;
+        opacity: 0.7;
+        transition: opacity 0.25s ease-in-out;
         z-index: 998;
       }
 
-      &:hover img{
+      &:hover img {
         opacity: 1;
       }
-  
-      .close_button_field__figure__img--absolute{
+
+      .close_button_field__figure__img--absolute {
         position: absolute;
         opacity: 0;
       }
     }
-
   }
-  
 }
 
 .footer {
@@ -228,7 +301,7 @@ h6 {
   flex-flow: column nowrap;
   background-color: $tertiaryColor;
 
-  .footer__made_by{
+  .footer__made_by {
     font-size: 1.4rem;
     font-weight: 500;
     color: rgb(209, 209, 209);
@@ -250,9 +323,8 @@ h6 {
       }
     }
   }
-  .footer__attributes{
+  .footer__attributes {
     font-size: 12px;
     margin-top: 5px;
-
   }
 }

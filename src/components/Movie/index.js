@@ -26,7 +26,6 @@ function Movie({data, configs, handleSetMovie, handleSetPerson}) {
   },[voteAverage])
 
   useEffect(()=>{
-    console.log(1)
     if(configs.images){
       setBaseURL(configs.images.base_url)
       setProfileSize(configs.images.profile_sizes[2])
