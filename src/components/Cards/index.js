@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 
 import nullPoster from '../../assets/nullposter.png'
-import nullPerson from '../../assets/nullperson.png'
 import emptyImg from '../../assets/empty.svg'
 
 import './style.scss'
@@ -9,11 +8,12 @@ import './style.scss'
 function Cards({configs, movies, title, handleSetPerson, handleSetMovie}) {
   const [baseURL, setBaseURL] = useState('')
   const [posterSize, setPosterSize] = useState('')
-
+  const [backdropSize, setBackdropSize] = useState('')
   useEffect(()=>{
     if(configs.images){
       setBaseURL(configs.images.base_url)
       setPosterSize(configs.images.poster_sizes[4])
+      setBackdropSize(configs.images.backdrop_sizes[1])
     }
   },[configs])
 
@@ -30,7 +30,12 @@ function Cards({configs, movies, title, handleSetPerson, handleSetMovie}) {
           movies.map((movie, i) => {
             let {id,poster_path, title, vote_average, overview, genres} = movie.movie
             let {cast} = movie
+
             overview = overview.substr(0, 200).concat('...')
+            
+            let windowWidth = window.innerWidth
+            if(windowWidth <= 475) poster_path = movie.movie.backdrop_path
+            else poster_path = movie.movie.poster_path
             let rate
 
             if(vote_average < 6) rate = "rate--low"
