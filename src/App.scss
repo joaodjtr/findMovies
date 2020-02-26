@@ -270,7 +270,6 @@ h6 {
   left: 0;
   height: 100vh;
   width: 100%;
-  // padding: 60px;
   background-color: $lightWhite;
 
   overflow-y: scroll;
@@ -301,6 +300,11 @@ h6 {
     height: $sizeIcons;
     width: $sizeIcons;
 
+    @media(max-width: 650px){
+      top: 30px;
+      right: 30px;
+    }
+
     .full_page__close_button_field__figure {
       position: relative;
       cursor: pointer;
@@ -323,6 +327,12 @@ h6 {
       .close_button_field__figure__img--absolute {
         position: absolute;
         opacity: 0;
+      }
+      
+      @media(max-width: 775px){
+        img{
+          opacity: 1;
+        }
       }
     }
   }

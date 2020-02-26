@@ -68,7 +68,7 @@ function App() {
         genres.forEach(g=>{
           if(g.id === id){
             if(!genre) genre = g.name
-            else genre += ", " + g.name
+            else genre += " | " + g.name
           }
         })
       })

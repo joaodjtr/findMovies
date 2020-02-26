@@ -67,11 +67,12 @@ function Movie({data, configs, handleSetMovie, handleSetPerson}) {
           <img src={`${photo ? baseURL+posterSize+photo : nullposter}`} alt={`${title}`} />
           {
           }
-          <span className={`poster__rate ${rate}`}>{voteAverage}</span>
+          
         </figure>
         <div className="content__informations">
           <h1 className="informations__title">{title}</h1>
           <h3 className="informations__genre">{genres}</h3>
+          <h3 className={`informations__rate ${rate}`}>{voteAverage}</h3>
           <h3 className="informations__topic_title">Overview</h3>
           <p className="informations__overview">{overview}</p>
           <div className="informations__footer">
