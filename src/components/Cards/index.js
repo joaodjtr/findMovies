@@ -29,8 +29,6 @@ function Cards({configs, movies, title, handleSetPerson, handleSetMovie}) {
         {
           movies.map((movie, i) => {
             let {id,poster_path, title, vote_average, overview, genres} = movie.movie
-            let {cast} = movie
-
             overview = overview.substr(0, 200).concat('...')
             
             let windowWidth = window.innerWidth

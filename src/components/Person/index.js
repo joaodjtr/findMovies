@@ -13,7 +13,8 @@ function Person({configs, data, handleSetPerson, handleSetMovie, requestMovieDet
   const [baseURL, setBaseURL] = useState('')
   const [profileSize, setProfileSize] = useState('')
   const [posterSize, setPosterSize] = useState('')
-  
+  const [backdropSize, setBackdropSize] = useState('')
+
   const [name, setName] = useState('')
   const [photo, setPhoto] = useState('')
   const [bio, setBio] = useState('')
@@ -26,6 +27,7 @@ function Person({configs, data, handleSetPerson, handleSetMovie, requestMovieDet
       setBaseURL(configs.images.base_url)
       setProfileSize(configs.images.profile_sizes[3])
       setPosterSize(configs.images.poster_sizes[3])
+      setBackdropSize(configs.images.backdrop_sizes[1])
     }
     
   },[configs])
@@ -98,8 +100,13 @@ function Person({configs, data, handleSetPerson, handleSetMovie, requestMovieDet
                     {
                       movies.length > 0 ? movies.map((item,i)=>{
                         let {poster_path, title, overview, genres} = item.movie
+
+                        let windowWidth = window.innerWidth
+                        if(windowWidth <= 420) poster_path = item.movie.backdrop_path
+                        else poster_path = item.movie.poster_path
+
                         return(
-                        <li key={`${item.movie.id+i+"mini"}`} className="frame__mini_movie">
+                        <li key={`${item.movie.id+"mini"+i}`} className="frame__mini_movie">
                           <figure className="mini_movie__poster">
                             <img src={`${poster_path ? baseURL+posterSize+poster_path : nullposter}`} alt={`${title}`}/>
                           </figure>
