@@ -1,6 +1,6 @@
-# Movie catalog
+# FindMovies
 
-### Search for movies using this app.
+### Search for your movies using FindMovies.
 
 Made using React⚛️ and [MovieDB API][]
 
