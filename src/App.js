@@ -20,6 +20,7 @@ function App() {
   const [pressedGenres, setPressedGenres] = useState('')
   const [person, setPerson] = useState({})
   const [movie, setMovie] = useState({}) 
+  const [showAsideMenu, setShowAsideMenu] = useState(false)
   
   useEffect(()=>{
     async function getConfigs(){
@@ -30,10 +31,6 @@ function App() {
     }
     getConfigs()
   },[])
-
-  useEffect(()=>{
-    console.log(movie)
-  },[movie])
 
   async function handleSetMovies(handledMovies, filter, sort_by, strGenres){
 
@@ -97,21 +94,23 @@ function App() {
     }
   }
 
+  function toggleAsideMenu(){
+    setShowAsideMenu(!showAsideMenu)
+  }
+
   return (
     <>
       <header className="header"></header>
 
       <header className="header header--fixed">
-        <SearchBar handleSetMovies={handleSetMovies}/>
+        <SearchBar handleSetMovies={handleSetMovies} toggleAsideMenu={toggleAsideMenu}/>
         <figure className="header__logo">
           <img src={logo} alt="Logo" />
         </figure>
       </header>
 
       <section className="section">
-        <aside className="section__aside">
-          <AsideMenu configs={configs} handleSetMovies={handleSetMovies}/>
-        </aside>
+        <AsideMenu configs={configs} handleSetMovies={handleSetMovies} showAsideMenu={showAsideMenu}/>
         <main className="section__main">
           <Cards configs={configs} title={title} movies={movies} handleSetPerson={handleSetPerson} handleSetMovie={handleSetMovie}/>
           {movie.movie ? <Movie configs={configs} data={movie} handleSetPerson={handleSetPerson} handleSetMovie={handleSetMovie}/> : ""}

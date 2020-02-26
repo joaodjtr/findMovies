@@ -7,9 +7,10 @@ import api from '../../services/api.js'
 import searchIcon from "../../assets/icons/search.svg";
 import menu from '../../assets/icons/menu.svg'
 
-function SearchBar({handleSetMovies}) {
+function SearchBar({handleSetMovies, toggleAsideMenu}) {
   const [search, setSearch] = useState(" ")
   const [showSearch, setShowInput] = useState(false) 
+  
   useEffect(()=>{
     async function searchMovie(value){
         if(value.length > 0 && value !== " "){
@@ -37,6 +38,11 @@ function SearchBar({handleSetMovies}) {
     if(windowWidth <= 755) setShowInput(!showSearch)
   }
 
+  function handleToggleAsideMenu(){
+    let windowWidth = window.innerWidth
+    if(windowWidth <= 775) toggleAsideMenu()
+  }
+
   return (
     <>
       <div className={`header__search_bar ${ showSearch ?  "search_bar--fullwidth" : ""}`}>
@@ -47,7 +53,7 @@ function SearchBar({handleSetMovies}) {
             placeholder="Search for movies..."
             type="text"
           />
-          <img src={menu} alt="menu icon" className="search_bar__icon--none"/>
+          <img onClick={handleToggleAsideMenu} src={menu} alt="menu icon" className="search_bar__icon--none"/>
         </div>
       </div>
     </>

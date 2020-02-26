@@ -247,10 +247,6 @@ h6 {
 
   &__aside {
     // styled on AsideMenu component
-    min-height: calc(100vh - 60px);
-    width: $widthAside;
-    padding: 30px 10px;
-    background-color: $tertiaryColor;
   }
 
   &__main {
@@ -261,15 +257,6 @@ h6 {
   }
 
   @media (max-width: 775px) {
-    aside.section__aside {
-      position: fixed;
-      left: $widthAside * -1;
-      div.aside__content {
-        position: fixed;
-        left: $widthAside * -1;
-      }
-    }
-
     &__main {
       width: 100%;
     }

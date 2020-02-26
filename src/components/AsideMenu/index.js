@@ -7,7 +7,7 @@ import MenuItens from './MenuItens'
 import GenresItens from './GenresItens'
 
 
-function AsideMenu({handleSetMovies, configs}) {
+function AsideMenu({handleSetMovies, configs, showAsideMenu}) {
   const [sort_by, setSortBy] = useState('popularity.desc')
   const [genres, setGenres] = useState({})
   const [renderGenres, setRenderGenres] = useState(false)
@@ -56,6 +56,7 @@ function AsideMenu({handleSetMovies, configs}) {
   }
 
   return (
+    <aside className={`section__aside ${showAsideMenu ? 'section__aside--mobile_visible' : ''}`}>
       <div className="aside__content">
         <ul className="aside__menu">
           <h4 className="aside__menu__title">Main</h4>
@@ -69,6 +70,7 @@ function AsideMenu({handleSetMovies, configs}) {
           }
         </ul>
       </div>
+    </aside>
   );
 }
 
